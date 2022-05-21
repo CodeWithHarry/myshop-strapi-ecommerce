@@ -5,7 +5,12 @@ module.exports = {
       {
         method: 'POST',
         path: '/orders/pretransaction',
-        handler: 'custom.exampleAction', 
+        handler: 'custom.pre', 
+      },
+      {
+        method: 'POST',
+        path: '/orders/posttransaction',
+        handler: 'custom.post', 
       },
     ],
   };

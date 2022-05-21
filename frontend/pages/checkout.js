@@ -21,11 +21,11 @@ const checkout = ({ cart }) => {
   }
 
   const submit = async () => { 
-    let orderId = Math.floor(1000000* Math.random())
+    let orderId = "OID" + Math.floor(1000000* Math.random())
     let url = `http://localhost:1337/api/orders/pretransaction`
     const rawResponse = await fetch(url, {
       method: 'POST', 
-      body: JSON.stringify({ orderid: orderId, amount: subtotal })
+      body: JSON.stringify({ orderid: orderId, amount: subtotal, ...form, cart: cart })
     });
     const content = await rawResponse.json();
  
@@ -76,7 +76,7 @@ return (
 
             {cart.map((item) => {
               return <li>
-                {item[0]} with a price of {item[1]}
+                Product {item[0]} with a price of ₹{item[1]}
               </li>
             })}
           </ul>

@@ -16,7 +16,8 @@
     "@strapi/strapi": "4.1.8",
     "better-sqlite3": "7.4.6",
     "paytmchecksum": "^1.5.0",
-    "pg": "^8.7.3"
+    "pg": "^8.7.3",
+    "strapi-plugin-react-editorjs": "^2.0.1"
   },
   "author": {
     "name": "A Strapi developer"
