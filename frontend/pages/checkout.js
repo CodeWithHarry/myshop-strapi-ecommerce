@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Script from 'next/script'
 
-const checkout = ({ cart }) => {
+const Checkout = ({ cart }) => {
   const [subtotal, setSubtotal] = useState(0)
   const [form, setForm] = useState({ name: "", email: "", address: "", phone: "" })
 
@@ -22,7 +22,7 @@ const checkout = ({ cart }) => {
 
   const submit = async () => { 
     let orderId = "OID" + Math.floor(1000000* Math.random())
-    let url = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/orders/pretransaction`
+    let url = `${process.env.NEXT_PUBLIC_STRAPI_URL} + "/api/orders/pretransaction`
     const rawResponse = await fetch(url, {
       method: 'POST', 
       body: JSON.stringify({ orderid: orderId, amount: subtotal, ...form, cart: cart })
@@ -63,7 +63,7 @@ const checkout = ({ cart }) => {
 
 return (
   <div>
-    <Script type="application/javascript" crossorigin="anonymous" src={`https://securegw.paytm.in/merchantpgpui/checkoutjs/merchants/${process.env.NEXT_PUBLIC_MID}.js`} > </Script>
+    <Script id={"paytm"} type="application/javascript" crossorigin="anonymous" src={`https://securegw.paytm.in/merchantpgpui/checkoutjs/merchants/${process.env.NEXT_PUBLIC_MID}.js`} > </Script>
 
 
     <section className="text-black body-font relative">
@@ -75,7 +75,7 @@ return (
           <ul className='list-decimal px-8'>
 
             {cart.map((item) => {
-              return <li>
+              return <li key={item.id}>
                 Product {item[0]} with a price of ₹{item[1]}
               </li>
             })}
@@ -126,4 +126,4 @@ return (
 )
 }
 
-export default checkout
+export default Checkout
