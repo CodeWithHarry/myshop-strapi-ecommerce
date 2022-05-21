@@ -22,7 +22,7 @@ const checkout = ({ cart }) => {
 
   const submit = async () => { 
     let orderId = "OID" + Math.floor(1000000* Math.random())
-    let url = `http://localhost:1337/api/orders/pretransaction`
+    let url = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/orders/pretransaction`
     const rawResponse = await fetch(url, {
       method: 'POST', 
       body: JSON.stringify({ orderid: orderId, amount: subtotal, ...form, cart: cart })

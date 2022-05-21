@@ -37,7 +37,7 @@ const Products = (props) => {
 
 export async function getServerSideProps(context) {
   let headers = {Authorization: "Bearer b26f3c26cd37a4ebc40f9eeebf127c49d47a61d4f516f1eabb24d5f614d1df7e8f0c4aa252b2aec3f1534e1c1cbb01a522a2ed05115501e1a9eed0598264b0d7d8f877cd7cc513482f750350c911e3eb4a034b74c4756112491d4380ceee5c6e375b7d1442aaf1b2464a66f45d600a653192a58a517569132f2a896a1a932959"}
-  let a = await fetch("http://localhost:1337/api/products?populate=*", {headers:headers})
+  let a = await fetch(process.env.NEXT_PUBLIC_STRAPI_URL + "/api/products?populate=*", {headers:headers})
   let products = await a.json() 
   return {
     props: {products: products},
