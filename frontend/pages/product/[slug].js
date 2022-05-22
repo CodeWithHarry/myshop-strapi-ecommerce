@@ -101,7 +101,7 @@ const Slug = ({product, addToCart}) => {
 
 export async function getServerSideProps(context) {
     console.log(context.query)
-    let headers = {Authorization: `Bearer ${ADMIN_TOKEN}`}
+    let headers = {Authorization: `Bearer ${process.env.ADMIN_TOKEN}`}
     let a = await fetch(process.env.NEXT_PUBLIC_STRAPI_URL + "/api/products?filters[slug]=" + context.query.slug + "&populate=*", {headers:headers})
     let product = await a.json() 
     return {

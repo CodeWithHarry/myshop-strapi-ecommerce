@@ -36,7 +36,7 @@ const Products = (props) => {
 }
 
 export async function getServerSideProps(context) {
-  let headers = {Authorization: `Bearer ${ADMIN_TOKEN}`}
+  let headers = {Authorization: `Bearer ${process.env.ADMIN_TOKEN}`}
   let a = await fetch(process.env.NEXT_PUBLIC_STRAPI_URL + "/api/products?populate=*", {headers:headers})
   let products = await a.json() 
   return {
